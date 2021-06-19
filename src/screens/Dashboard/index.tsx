@@ -4,7 +4,7 @@ import { Container, Text } from "./styles";
 export function Dashboard() {
   return (
     <Container>
-      <Text>OLAR</Text>
+      <Text>Dashboard</Text>
     </Container>
   );
 }
