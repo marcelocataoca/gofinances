@@ -3,7 +3,6 @@ import { Modal, TouchableWithoutFeedback, Keyboard, Alert } from "react-native";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { Input } from "../../components/Form/Input";
 import { InputForm } from "../../components/Form/InputForm";
 import { Button } from "../../components/Form/Button";
 import { TransactionTypeButton } from "../../components/Form/TransactionTypeButton";
@@ -39,8 +38,9 @@ export function Register() {
         name: "Categoria",
     });
     // formState -> captura os erros que o yup encontrou
+    //desestruturação do useForm
     const {
-        control,
+        control, //regisrar os inputs do form
         handleSubmit,
         formState: { errors },
     } = useForm({
