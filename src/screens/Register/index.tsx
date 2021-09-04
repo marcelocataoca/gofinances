@@ -66,7 +66,8 @@ export function Register() {
             return Alert.alert("Selecione o tipo da transação");
         if (category.key === "category")
             return Alert.alert("Selecione a categoria");
-        const data = {
+
+        const newTransaction = {
             name: form.name,
             amount: form.amount,
             transactionType,
@@ -74,7 +75,11 @@ export function Register() {
         };
 
         try {
-            await AsyncStorage.setItem(dataKey, JSON.stringify(data));
+            const data = await AsyncStorage.getItem(dataKey); //recupera os dados do storage
+            const currentData = data ? JSON.parse(data) : []; //pega os dados da nova transct
+
+            const dataFormatted = { ...currentData, newTransaction };
+            await AsyncStorage.setItem(dataKey, JSON.stringify(dataFormatted));
         } catch (error) {
             console.log(error);
             Alert.alert("Não foi possivel alterar");
@@ -83,10 +88,15 @@ export function Register() {
 
     useEffect(() => {
         async function loadData() {
+            //useEffect não é asincrono
             const data = await AsyncStorage.getItem(dataKey);
             console.log(JSON.parse(data!));
         }
         loadData();
+        // async function removeAll() {
+        //     await AsyncStorage.removeItem(dataKey);
+        // }
+        // removeAll();
     }, []);
 
     return (
