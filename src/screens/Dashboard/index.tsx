@@ -208,7 +208,7 @@ export function Dashboard() {
                             title="Total"
                             amount={highlightData?.total?.amount}
                             lastTransaction={
-                                highlightData.total.lastTransaction
+                                highlightData.expensives.lastTransaction
                             }
                         />
                     </HighlightCards>
