@@ -5,11 +5,12 @@ import { Container, Title } from "./styles";
 
 interface Props extends RectButtonProps {
   title: string;
+  onPress: () => void;
 }
-
-export function Button({ title, ...rest }: Props) {
+//onPress enviado por param para resolver conflito e usar o ReactHookForm para cuidar do form
+export function Button({ title, onPress, ...rest }: Props) {
   return (
-    <Container {...rest}>
+    <Container onPress={onPress} {...rest}>
       <Title>{title}</Title>
     </Container>
   );
