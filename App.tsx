@@ -5,6 +5,7 @@ import React from "react";
 import AppLoading from "expo-app-loading";
 import { ThemeProvider } from "styled-components/native";
 import { NavigationContainer } from "@react-navigation/native";
+import { StatusBar } from "react-native";
 
 import {
   useFonts,
@@ -32,6 +33,7 @@ export default function App() {
     <ThemeProvider theme={theme}>
       {/* childrens possuem acesso a todo theme */}
       <NavigationContainer>
+        <StatusBar barStyle="light-content"/>
         <AppRoutes />
       </NavigationContainer>
     </ThemeProvider>
