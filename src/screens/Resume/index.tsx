@@ -33,7 +33,7 @@ interface CategoryData {
 }
 
 export function Resume() {
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [selectDate, setSelectDate] = useState(new Date()); 
     const [totalByCategories, setTotalByCategories] = useState<CategoryData[]>(
         []
@@ -41,8 +41,7 @@ export function Resume() {
 
     const theme = useTheme();
 
-    function handleDateChange(action: 'next' | 'prev'){
-        setIsLoading(true);
+    function handleDateChange(action: 'next' | 'prev'){        
         if(action === 'next'){
             const newDate = addMonths(selectDate, 1);
             setSelectDate(newDate);
@@ -53,6 +52,7 @@ export function Resume() {
     }
 
     async function loadData() {
+        setIsLoading(true);
         const dataKey = "@gofinances:transactions";
         const response = await AsyncStorage.getItem(dataKey); //recupera os dados do storage
         const currentResponse = response ? JSON.parse(response) : []; //pega os dados da nova transct
@@ -67,8 +67,7 @@ export function Resume() {
         const expensivesTotal = expensives.reduce((acc: number, expensive: TransactionData)=> {
             return acc + Number(expensive.amount);
         }, 0)
-
-        console.log(expensivesTotal)
+      
 
         const totalByCategory: CategoryData[] = [];
 
@@ -102,14 +101,10 @@ export function Resume() {
         setIsLoading(false);
     }
 
-    useEffect(() => {
-        loadData();
-    }, [selectDate]);
-
     useFocusEffect(
         useCallback(() => {
             loadData();
-        }, [])
+        }, [selectDate])
     );
 
     return (
