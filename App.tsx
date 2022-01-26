@@ -16,6 +16,7 @@ import {
 
 import theme from "./src/global/styles/theme";
 import { Register } from "./src/screens/Register";
+import { SignIn } from "./src/screens/SignIn";
 
 import { AppRoutes } from "./src/routes/app.routes";
 
@@ -34,7 +35,8 @@ export default function App() {
       {/* childrens possuem acesso a todo theme */}
       <NavigationContainer>
         <StatusBar barStyle="light-content"/>
-        <AppRoutes />
+        {/* <AppRoutes /> */}
+        <SignIn />
       </NavigationContainer>
     </ThemeProvider>
   );
