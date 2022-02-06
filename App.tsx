@@ -19,6 +19,7 @@ import { Register } from "./src/screens/Register";
 import { SignIn } from "./src/screens/SignIn";
 
 import { AppRoutes } from "./src/routes/app.routes";
+import { AuthProvider } from "./src/hooks/auth";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -36,8 +37,10 @@ export default function App() {
       <NavigationContainer>
         <StatusBar barStyle="light-content"/>
         {/* <AppRoutes /> */}
-        <SignIn />
-      </NavigationContainer>
+        <AuthProvider>
+          <SignIn />
+        </AuthProvider>
+      </NavigationContainer>  
     </ThemeProvider>
   );
 }

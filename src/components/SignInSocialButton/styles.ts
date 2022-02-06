@@ -20,7 +20,7 @@ import styled from 'styled-components/native';
 
     padding: ${RFValue(16)}px;
     border-color: ${({ theme }) => theme.colors.background};
-    border-right: 1px;
+    border-right-width: 1px;
   `;  
   export const Text = styled.Text`
     flex: 1;
