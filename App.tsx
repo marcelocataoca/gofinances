@@ -5,6 +5,7 @@ import React from "react";
 import AppLoading from "expo-app-loading";
 import { ThemeProvider } from "styled-components/native";
 import { NavigationContainer } from "@react-navigation/native";
+import { StatusBar } from "react-native";
 
 import {
   useFonts,
@@ -15,8 +16,10 @@ import {
 
 import theme from "./src/global/styles/theme";
 import { Register } from "./src/screens/Register";
+import { SignIn } from "./src/screens/SignIn";
 
 import { AppRoutes } from "./src/routes/app.routes";
+import { AuthProvider } from "./src/hooks/auth";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -32,8 +35,12 @@ export default function App() {
     <ThemeProvider theme={theme}>
       {/* childrens possuem acesso a todo theme */}
       <NavigationContainer>
-        <AppRoutes />
-      </NavigationContainer>
+        <StatusBar barStyle="light-content"/>
+        {/* <AppRoutes /> */}
+        <AuthProvider>
+          <SignIn />
+        </AuthProvider>
+      </NavigationContainer>  
     </ThemeProvider>
   );
 }
