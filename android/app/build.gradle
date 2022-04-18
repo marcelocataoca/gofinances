@@ -1,5 +1,4 @@
 apply plugin: "com.android.application"
-apply plugin: 'maven-publish'
 
 import com.android.build.OutputFile
 
@@ -138,8 +137,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
-        missingDimensionStrategy 'react-native-camera', 'general'
-        multiDexEnabled true 
+        manifestPlaceholders = [appAuthRedirectScheme: 'com.gofinances']
     }
     splits {
         abi {
@@ -215,7 +213,7 @@ dependencies {
 // Run this once to be able to run the application with BUCK
 // puts all compile dependencies into folder libs for BUCK to use
 task copyDownloadableDepsToLibs(type: Copy) {
-    from configurations.implementation
+    from configurations.compile
     into 'libs'
 }
 
