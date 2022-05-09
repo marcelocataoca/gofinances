@@ -32,7 +32,6 @@ o ambiente de desenvolvimento para [_Android_](https://react-native.rocketseat.d
 
 Seu emulador Android deverá abrir e executar o app Gofinance
 
-
-## 💻 Projeto
+ 💻 Projeto
 
 
