@@ -1,4 +1,10 @@
-<h4 align="center">	🚧  GoFinances 🚀 Em construção...  🚧</h4>
+<h1 align="center">Gofinances</h1>
+
+<p align="center">	🚧  Em construção...  🚧</p>
+
+## Descrição do Projeto
+<p>Um app para controle de finanças pessoais</p>
+
 
 ## 🧪 Tecnologias
 
@@ -33,7 +39,5 @@ $ yarn run android
 o ambiente de desenvolvimento para [_Android_](https://react-native.rocketseat.dev/)
 
 Seu emulador Android deverá abrir e executar o app Gofinance
-
- 💻 Projeto
 
 
