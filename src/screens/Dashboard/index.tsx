@@ -26,6 +26,7 @@ import {
     LoadContainer,
 } from "./styles";
 import { LastTransaction } from "../../components/HighlightCard/styles";
+import { useAuth } from "../../hooks/auth";
 
 export interface DataListProps extends TransactionCardProps {
     id: string;
@@ -49,6 +50,7 @@ export function Dashboard() {
         {} as HighlightData
     );
     const theme = useTheme();
+    const { signOut } = useAuth();
 
     //Buscando a transação mais recente
     function getLastTransactionDate(
@@ -71,8 +73,9 @@ export function Dashboard() {
     }
 
     async function loadTransactions() {
-        const dataKey = "@gofinances:transactions";
+        const dataKey = "@gofinances:transactions_user";
         const response = await AsyncStorage.getItem(dataKey);
+
         const transactions = response ? JSON.parse(response) : [];
 
         let entriesTotal = 0;
@@ -181,7 +184,7 @@ export function Dashboard() {
                                     <UserName>Kenji</UserName>
                                 </User>
                             </UserInfo>
-                            <LogoutButton onPress={() => {}}>
+                            <LogoutButton onPress={signOut}>
                                 <Icon name="power" />
                             </LogoutButton>
                         </UserWrapper>
