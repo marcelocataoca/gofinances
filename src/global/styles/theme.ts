@@ -1,3 +1,6 @@
+import styled from "styled-components/native";
+
+
 export default{
     colors: {
         primary: '#5636D3',
@@ -22,5 +25,17 @@ export default{
         regular:    'Poppins_400Regular',
         medium:    'Poppins_500Medium',
         bold:    'Poppins_700Bold',
+    },
+
+    dark: {
+        text: '#fff',
+        text_dark: '#fff',
+        background: '#000',
+    },
+
+    light: {
+        text: '#000',
+        text_dark: '#000',
+        background: '#F0F2F5',
     }
 }

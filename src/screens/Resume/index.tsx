@@ -53,7 +53,7 @@ export function Resume() {
 
     async function loadData() {
         setIsLoading(true);
-        const dataKey = "@gofinances:transactions";
+        const dataKey = "@gofinances:transactions_user";
         const response = await AsyncStorage.getItem(dataKey); //recupera os dados do storage
         const currentResponse = response ? JSON.parse(response) : []; //pega os dados da nova transct
 

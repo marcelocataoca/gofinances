@@ -1,7 +1,10 @@
-import  React, { createContext, ReactNode, useContext } from "react";
-import { SignIn } from "../screens/SignIn";
-import * as AuthSession from 'expo-auth-session';
+import  React, { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+const { CLIENT_ID } = process.env;
+const { REDIRECT_URI } = process.env;
 
+import * as AuthSession from 'expo-auth-session';
+  
 interface AuthProviderProps{
   children: ReactNode;
 }
@@ -16,38 +19,76 @@ interface User{
 interface IAuthContextData{
   user: User;
   signInWithGoogle(): Promise<void>;
+  signOut(): Promise<void>;
+  loadUserStorage: boolean;
 }
 
+interface AuthorizationResponse{
+  params:{
+    access_token: string;
+  };
+  type: string;
+}
 
 const AuthContext = createContext({} as IAuthContextData);
 
 function AuthProvider({children}: AuthProviderProps){
-  const user = {
-    id: '121314',
-    name: 'Vanderson',
-    email: 'vand@som.com',
-  }
+  const [user, setUser] = useState<User>({} as User)
+  const [loadUserStorage, setLoadUserStorage] = useState(true);
+  const userStorageKey = '@gofinances:user';
 
   //centralizar a autenticação
   async function signInWithGoogle() {
-    try {
-      const CLIENT_ID = '249257828324-teil8n673ah6kl0dp9bb61lit2bos958.apps.googleusercontent.com';
-      const REDIRECT_URI = 'https://auth.expo.io/@marcelokenjicataoca/gofinances';
+    try {  
       const RESPONSE_TYPE = 'token';
       const SCOPE = encodeURI('profile email');
 
       const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`;
       
-      const response = await AuthSession.startAsync({ authUrl });
-      console.log(response);
+      const {type, params} = await AuthSession.startAsync({ authUrl }) as AuthorizationResponse;
+      
+      if(type === 'success'){
+        const response = await fetch(`https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${params.access_token}`);
+        const userInfo = await response.json();
+        
+        setUser({
+          id: userInfo.id,
+          name: userInfo.given_name,
+          email: userInfo.email,
+          photo: userInfo.picture,
+        })
+        
+      }
+      console.log(user);
+      await AsyncStorage.setItem(userStorageKey, JSON.stringify(user));
       
     } catch (error: any) {
+      console.log(error);          
       throw new Error(error);
     }
   }
 
+  async function signOut(){
+    setUser({} as User);
+    await AsyncStorage.removeItem(userStorageKey);
+  }
+
+  // Recuperando os dados do usuario logado para manter nas rotas autenticadas
+  useEffect(() => {
+    
+    async function loadUserStorageDate(){
+      const userStoraged = await AsyncStorage.getItem(userStorageKey);
+      if(userStoraged){
+        const userLogged = JSON.parse(userStoraged) as User;
+        setUser(userLogged);
+      }
+      setLoadUserStorage(false);
+    }
+    loadUserStorageDate();
+  },[])
+
   return(
-    <AuthContext.Provider value={{user, signInWithGoogle}}>
+    <AuthContext.Provider value={{user, signInWithGoogle, signOut, loadUserStorage}}>
       {children}
     </AuthContext.Provider>
   )
