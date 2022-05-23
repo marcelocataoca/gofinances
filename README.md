@@ -3,7 +3,7 @@
 <p align="center">	🚧  Em construção...  🚧</p>
 
 ## Descrição do Projeto
-<p>Um app para controle de finanças pessoais</p>
+<p>Aplicativo para controle de finanças pessoais</p>
 
 
 ## 🧪 Tecnologias
