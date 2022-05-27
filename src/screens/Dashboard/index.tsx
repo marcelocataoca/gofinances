@@ -55,7 +55,7 @@ export function Dashboard() {
     //Buscando a transação mais recente
     function getLastTransactionDate(
         collection: DataListProps[],
-        type: "positve" | "negative"
+        type: "positive" | "negative"
     ) {
         const lastTransactionEntries = new Date(
             Math.max.apply(

@@ -19,7 +19,8 @@ export default{
         title_signin: '#FFF',
         text: '#fff',
         text_dark: '#fff',
-        background: '#EBE9E9',
+        background: '#ABB2B9',
+        input_bg: '#E5E8E8',
     },
 
     fonts: {
