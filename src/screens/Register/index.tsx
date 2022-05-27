@@ -112,7 +112,6 @@ export function Register() {
         async function loadData() {
             //useEffect não é asincrono
             const data = await AsyncStorage.getItem(dataKey);
-            console.log(JSON.parse(data!));
         }
         loadData();
         // async function removeAll() {

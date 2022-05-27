@@ -25,7 +25,7 @@ import styled from 'styled-components/native';
   export const Text = styled.Text`
     flex: 1;
     text-align: center;
-
+    color: ${({ theme }) => theme.colors.text_dark}
     font-family: ${({ theme }) => theme.fonts.medium};
     font-size: ${RFValue(14)}px;
   

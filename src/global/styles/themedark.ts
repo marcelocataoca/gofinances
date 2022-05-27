@@ -14,12 +14,12 @@ export default{
         attention: '#E83F5B',
         attention_light: 'rgba(232, 63, 91, 0.5)',
 
-        shape: '#FFFFFF',
-        title: '#363F5F',
+        shape: '#191970',
+        title: '#fff',
         title_signin: '#FFF',
-        text: '#969CB2',
-        text_dark: '#000',
-        background: '#F0F2F5',
+        text: '#fff',
+        text_dark: '#fff',
+        background: '#EBE9E9',
     },
 
     fonts: {

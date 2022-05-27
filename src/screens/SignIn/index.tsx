@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { RFValue } from "react-native-responsive-fontsize";
 
 import AppleSvg from '../../assets/apple.svg';
+import AppleSvgDark from '../../assets/apple-dark.svg';
 import GoogleSvg from '../../assets/google.svg';
 import LogoSvg from '../../assets/logo.svg';
 import { useAuth } from "../../hooks/auth";
@@ -9,13 +10,14 @@ import { useAuth } from "../../hooks/auth";
 import {SignInSocialButton} from '../../components/SignInSocialButton';
 
 import { Container, Header, TitleWrapper, Title, SignInTitle, Footer, FooterWrapper} from './styles';
-import { ActivityIndicator, Alert } from "react-native";
+import { ActivityIndicator, Alert, useColorScheme } from "react-native";
 import { useTheme } from "styled-components";
 
 export function SignIn(){
   const [isLoading, setIsLoading] = useState(false);
   const {signInWithGoogle} = useAuth();
   const theme = useTheme();
+  const deviceTheme = useColorScheme(); 
   
   async function handleSignInWithGoogle(){
     try {
@@ -55,7 +57,7 @@ export function SignIn(){
           />
           <SignInSocialButton
             title="Entrar com Apple"
-            svg={AppleSvg}
+            svg={deviceTheme == 'dark'? AppleSvgDark : AppleSvg}
           />
         </FooterWrapper>
 
