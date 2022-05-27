@@ -20,6 +20,7 @@ export default{
         text: '#969CB2',
         text_dark: '#000',
         background: '#F0F2F5',
+        input_bg: '#FFFFFF',
     },
 
     fonts: {

@@ -17,8 +17,8 @@ export const Header = styled.View`
 `;
 export const Title = styled.Text`
     font-family: ${({ theme }) => theme.fonts.regular};
-    font-size: ${RFValue(18)}px;
-    color: ${({ theme }) => theme.colors.shape};
+    font-size: ${RFValue(22)}px;
+    color: ${({ theme }) => theme.colors.title_signin};
 `;
 export const Content = styled.ScrollView``;
 
