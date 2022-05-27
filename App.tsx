@@ -15,17 +15,14 @@ import {
 } from "@expo-google-fonts/poppins";
 
 import theme from "./src/global/styles/theme";
+import themeDark from "./src/global/styles/themedark";
 import { AuthProvider, useAuth } from "./src/hooks/auth";
 import { useColorScheme } from "react-native";
 
 
 export default function App() {
   const deviceTheme = useColorScheme();
-  const getTheme = deviceTheme ? theme[deviceTheme] : theme.dark;
-  console.log(theme);
-  console.log(getTheme);
-  
-  
+
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
     Poppins_500Medium,
@@ -38,7 +35,7 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={deviceTheme == 'dark' ? themeDark : theme}>
       {/* childrens possuem acesso a todo theme */}
       <StatusBar barStyle="light-content" />
       <AuthProvider>
