@@ -2,6 +2,9 @@
 
 <p align="center">	🚧  Em construção...  🚧</p>
 
+![firstgifGoFinance](https://user-images.githubusercontent.com/19317136/171476560-fcb20558-2843-45a6-b4ba-7c4eabad6a02.gif)
+
+
 ## Descrição do Projeto
 <p>Aplicativo para controle de finanças pessoais</p>
 
