@@ -55,7 +55,7 @@ function AuthProvider({children}: AuthProviderProps){
           id: userInfo.id,
           name: userInfo.given_name,
           email: userInfo.email,
-          photo: userInfo.picture,
+          photo: userInfo.picture,  // API ui-avatars para criar img com iniciais do nome inserido
         })
         
       }

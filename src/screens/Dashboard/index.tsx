@@ -50,7 +50,7 @@ export function Dashboard() {
         {} as HighlightData
     );
     const theme = useTheme();
-    const { signOut } = useAuth();
+    const { signOut, user } = useAuth();
 
     //Buscando a transação mais recente
     function getLastTransactionDate(
@@ -176,12 +176,12 @@ export function Dashboard() {
                             <UserInfo>
                                 <Photo
                                     source={{
-                                        uri: "https://avatars.githubusercontent.com/u/19317136?v=4",
+                                        uri: user.photo,
                                     }}
                                 />
                                 <User>
                                     <UserGreeting>Olá, </UserGreeting>
-                                    <UserName>Kenji</UserName>
+                                    <UserName>{user.name}</UserName>
                                 </User>
                             </UserInfo>
                             <LogoutButton onPress={signOut}>
