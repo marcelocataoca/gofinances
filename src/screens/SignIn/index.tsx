@@ -10,7 +10,7 @@ import { useAuth } from "../../hooks/auth";
 import {SignInSocialButton} from '../../components/SignInSocialButton';
 
 import { Container, Header, TitleWrapper, Title, SignInTitle, Footer, FooterWrapper} from './styles';
-import { ActivityIndicator, Alert, useColorScheme } from "react-native";
+import { ActivityIndicator, Alert, Platform, useColorScheme } from "react-native";
 import { useTheme } from "styled-components";
 
 export function SignIn(){
@@ -54,10 +54,12 @@ export function SignIn(){
             svg={GoogleSvg}
             onPress={handleSignInWithGoogle}
           />
-          <SignInSocialButton
+          {Platform.OS === 'ios' &&    
+            <SignInSocialButton
             title="Entrar com Apple"
             svg={deviceTheme == 'dark'? AppleSvgDark : AppleSvg}
-          />
+            />
+          }
         </FooterWrapper>
 
         {isLoading && <ActivityIndicator color={theme.colors.shape} 
