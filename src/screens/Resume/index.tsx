@@ -14,6 +14,7 @@ import { useTheme } from "styled-components";
 import { ptBR } from "date-fns/locale";
 import { ActivityIndicator } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
+import { useAuth } from "../../hooks/auth";
 
 interface TransactionData {
     type: "positive" | "negative";
@@ -38,6 +39,7 @@ export function Resume() {
     const [totalByCategories, setTotalByCategories] = useState<CategoryData[]>(
         []
     );
+    const{ user } = useAuth();
 
     const theme = useTheme();
 
@@ -52,7 +54,7 @@ export function Resume() {
 
     async function loadData() {
         setIsLoading(true);
-        const dataKey = "@gofinances:transactions_user";
+        const dataKey = `@gofinances:transactions_user:${user.id}`;
         const response = await AsyncStorage.getItem(dataKey); //recupera os dados do storage
         const currentResponse = response ? JSON.parse(response) : []; //pega os dados da nova transct
 
