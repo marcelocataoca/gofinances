@@ -1,11 +1,12 @@
 import "react-native-gesture-handler";
 import "intl";
 import "intl/locale-data/jsonp/pt-BR";
-import React from "react";
+import React, { useEffect } from "react";
 import AppLoading from "expo-app-loading";
 import { ThemeProvider } from "styled-components";
 import { Routes } from "./src/routes";
 import { StatusBar } from "react-native";
+import SplashScreen from "react-native-splash-screen";
 
 import {
   useFonts,
@@ -21,6 +22,11 @@ import { useColorScheme } from "react-native";
 
 
 export default function App() {
+  
+  useEffect(() => {  
+    SplashScreen.hide();
+  },[]);
+
   const deviceTheme = useColorScheme();
 
   const [fontsLoaded] = useFonts({
